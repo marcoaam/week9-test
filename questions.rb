@@ -152,7 +152,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-	string.split('').delete_if { |letter| letter =~ /^[A-Z]*$/ }.join('')
+	string.chars.delete_if { |letter| letter =~ /^[A-Z]/ }.join('')
 end
 
 # round up a float up and convert it to an Integer,
@@ -185,12 +185,21 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+	string.capitalize.split(' ').map do |word| 
+		if word == 'and' || word == 'the'
+			word
+		else
+			word.capitalize
+		end
+	end.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+	return true if string.match(/\W/)
+	false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -207,10 +216,13 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+	Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+	file = File.new(file_path, 'r')
+	file.close
 end
 
 # --- tougher ones ---
