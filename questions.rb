@@ -160,6 +160,7 @@ end
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+	float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
@@ -189,6 +190,7 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+	range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a 
