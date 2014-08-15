@@ -68,9 +68,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-	new_array = []
-	new_array << array.select { |element| element.even? }
-	new_array << array.select { |element| element.odd? }
+	array.partition { |element| element.even? }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -83,12 +81,12 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-	array.sort_by { |element| element.length }.first
+	array.min_by { |element| element.length }
 end
 
 # return the longest word in an array
 def longest_word_in_array(array)
-	array.sort_by { |element| element.length }.last
+	array.max_by { |word| word.length }
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -119,6 +117,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+	array.drop_while { |element| element < 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -132,6 +131,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+	array.map { |word| word.split('') }.flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -154,6 +154,7 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+	float.ceil
 end
 
 # round down a float up and convert it to an Integer,
